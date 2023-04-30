@@ -1,5 +1,6 @@
 \input texinfo
 @c %**start of header
+@documentencoding utf-8
 @setfilename R-data.info
 @settitle R 데이터 가져오기/내보내기
 @setchapternewpage on
@@ -86,7 +87,7 @@ David A. James
 Guido van Steen
 
 @item @CRANpkg{foreign}:
-Thomas Lumley, Saikat DebRoy, Douglas Bates, Duncan Murdoch and Roger Bivand
+Thomas Lumley, Saikat DebRoy, Douglas Bates, Duncan Murdoch와 Roger Bivand
 
 @item @CRANpkg{gdata}:
 Gregory R. Warnes
@@ -101,7 +102,7 @@ Simon Urbanek
 Simon Urbanek
 
 @item @CRANpkg{RMySQL}:
-David James and Saikat DebRoy
+David James와 Saikat DebRoy
 
 @item @CRANpkg{RNetCDF}:
 Pavel Michna
