@@ -1,0 +1,1697 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- 이 매뉴얼은 한글 사용자를 위하여 R, 버전 4.3.0 한글에 추가한 설명입니다.
+
+저작권 C 2023 한국R사용자회
+
+이 매뉴얼의 정확한 사본을 만들고 배포할 수 있는 권한이 부여됩니다. 저작권 공지 및 이 권한 공지가 모든 사본에 보존되어야 합니다.
+
+이 매뉴얼의 수정된 버전을 정확한 복사 조건에 따라 복사하고 배포할 수 있는 권한이 부여됩니다. 단, 전체 파생 작업 결과물이 이 권한 공지와 동일한 조건으로 배포되어야 합니다.
+
+이 매뉴얼을 다른 언어로 번역하여 복사 및 배포할 수 있는 권한이 수정된 버전에 대한 위의 조건에 따라 부여됩니다. 단, 이 권한 공지는 한국R사용자회가 승인한 번역으로 명시될 수 있습니다.
+
+ -->
+<!-- Created on May 7, 2023 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>R 데이터 가져오기/내보내기 [한글 부록]</title>
+
+<meta name="description" content="R 데이터 가져오기/내보내기 [한글 부록]">
+<meta name="keywords" content="R 데이터 가져오기/내보내기 [한글 부록]">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="g_t_c0c1_c704"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="R-deiteo-gajyeoogi_002fnaebonaegi-_005bhangeul-burog_005d"></a>
+<h1 class="settitle">R 데이터 가져오기/내보내기 [한글 부록]</h1>
+
+<p>이 문서는 R에서 한글 데이터를 가져오고 내보내는 방법을 안내합니다.
+</p>
+<p>이 매뉴얼은 한글 사용자를 위하여 R, 버전 4.3.0 한글에 추가한 설명입니다.
+</p>
+<p>저작권 &copy; 2023 한국R사용자회
+</p>
+<blockquote><p>이 매뉴얼의 정확한 사본을 만들고 배포할 수 있는 권한이 부여됩니다. 저작권 공지 및 이 권한 공지가 모든 사본에 보존되어야 합니다.
+</p>
+<p>이 매뉴얼의 수정된 버전을 정확한 복사 조건에 따라 복사하고 배포할 수 있는 권한이 부여됩니다. 단, 전체 파생 작업 결과물이 이 권한 공지와 동일한 조건으로 배포되어야 합니다.
+</p>
+<p>이 매뉴얼을 다른 언어로 번역하여 복사 및 배포할 수 있는 권한이 수정된 버전에 대한 위의 조건에 따라 부여됩니다. 단, 이 권한 공지는 한국R사용자회가 승인한 번역으로 명시될 수 있습니다.
+</p></blockquote>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#g_t_ac10_c0ac_c758-_b9d0">감사의 말</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">            
+</td></tr>
+<tr><td align="left" valign="top"><a href="#g_t_c18c_ac1c">1. 소개</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                
+</td></tr>
+<tr><td align="left" valign="top"><a href="#g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130">2. 스프레드시트와 유사한 데이터</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">       
+</td></tr>
+<tr><td align="left" valign="top"><a href="#g_t_b2e4_b978-_d1b5_acc4-_c2dc_c2a4_d15c_c5d0_c11c-_ac00_c838_c624_ae30">3. 다른 통계 시스템에서 가져오기</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">  
+</td></tr>
+<tr><td align="left" valign="top"><a href="#g_t_ad00_acc4_d615-_b370_c774_d130_bca0_c774_c2a4">4. 관계형 데이터베이스</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">        
+</td></tr>
+<tr><td align="left" valign="top"><a href="#g_t_c774_c9c4-_d30c_c77c">5. 이진 파일</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                
+</td></tr>
+<tr><td align="left" valign="top"><a href="#g_t_c774_bbf8_c9c0-_d30c_c77c">6. 이미지 파일</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                 
+</td></tr>
+<tr><td align="left" valign="top"><a href="#g_t_c5f0_acb0">7. 연결</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                 
+</td></tr>
+<tr><td align="left" valign="top"><a href="#g_t_b124_d2b8_c6cc_d06c-_c778_d130_d398_c774_c2a4">8. 네트워크 인터페이스</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">          
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Excel-_c2a4_d504_b808_b4dc_c2dc_d2b8-_c77d_ae30">9. Excel 스프레드시트 읽기</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">  
+</td></tr>
+<tr><td align="left" valign="top"><a href="#g_t_cc38_c870">A. 참조</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                  
+</td></tr>
+<tr><td align="left" valign="top"><a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778">함수 및 변수 색인</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">  
+</td></tr>
+<tr><td align="left" valign="top"><a href="#g_t_ac1c_b150-_c0c9_c778">개념 색인</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">               
+</td></tr>
+</table>
+
+<hr size="1">
+<a name="g_t_ac10_c0ac_c758-_b9d0"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c18c_ac1c" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c18c_ac1c" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="gamsayi-mal"></a>
+<h1 class="unnumbered">감사의 말</h1>
+
+<p>한국알사용자회의 기틀을 만든 열정적인 통계인, 이철희박사님께 감사드립니다.
+</p>
+
+<hr size="6">
+<a name="g_t_c18c_ac1c"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_ac10_c0ac_c758-_b9d0" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_ac00_c838_c624_ae30" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_ac10_c0ac_c758-_b9d0" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="sogae"></a>
+<h1 class="chapter">1. 소개</h1>
+
+<p>R 재단이 발행하고, 관리하는 <em>R Data Import/Export</em>(번역: R 데이터 가져오기/내보내기) 매뉴얼이 있습니다. 이 기술 문서는 한글로 번역되어 있습니다. 이 매뉴얼, <em>R 데이터 가져오기/내보내기 [한글 부록]</em>은 제목에서 말하는 것처럼 한글 사용자를 위한 <em>R 데이터 가져오기/내보내기</em>의 부록입니다.
+</p>
+<p>이 매뉴얼은 &rsquo;한글 관련 추가 설명 제공&rsquo;이라는 제한된 목적으로 기획되었으며, 이 목적에 부합하도록 최대한 간략하게 작성되었습니다. <em>R 데이터 가져오기/내보내기</em>의 구성 방식과 목차 형식을 따르면서, 한글 사용자가 부딪힐 수 있는 추가 상황에 대응하는 설명을 부분별로 추가하는 것으로 문서 내용이 제공됩니다.
+</p>
+<p>따라서, 이 매뉴얼은 자체적으로는 독립적이거나 완성적인 설명서가 아님을 밝힙니다. 
+</p>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#g_t_ac00_c838_c624_ae30">1.1 가져오기</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                     
+</td></tr>
+<tr><td align="left" valign="top"><a href="#g_t_d14d_c2a4_d2b8-_d30c_c77c_b85c-_b0b4_bcf4_b0b4_ae30">1.2 텍스트 파일로 내보내기</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">        
+</td></tr>
+<tr><td align="left" valign="top"><a href="#XML">1.3 XML</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                         
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="g_t_ac00_c838_c624_ae30"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_c18c_ac1c" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c778_cf54_b529" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c18c_ac1c" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c18c_ac1c" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="gajyeoogi"></a>
+<h2 class="section">1.1 가져오기</h2>
+<a name="index-scan"></a>
+
+<p>(공백)
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#g_t_c778_cf54_b529">1.1.1 인코딩</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                   
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="g_t_c778_cf54_b529"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_ac00_c838_c624_ae30" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d14d_c2a4_d2b8-_d30c_c77c_b85c-_b0b4_bcf4_b0b4_ae30" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c18c_ac1c" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_ac00_c838_c624_ae30" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="inkoding"></a>
+<h3 class="subsection">1.1.1 인코딩</h3>
+<a name="index-inkoding"></a>
+
+<p>맥OS 또는 유닉스 계열의 운영체제를 사용하는 한글 사용자는 이 운영체제들이 <code>utf-8</code>을 기본 인코딩으로 사용한다는 이야기를 들어보았을 것입니다. 
+</p>
+<p>하지만, 마이크로소프트사의 윈도우 운영체제를 사용하는 대다수의 사용자들은 한글 윈도우가 어떤 인코딩을 기본으로 사용하는지 모르는 경우가 많습니다. 한글 윈도우는 <code>cp949</code>를 기본 인코딩으로 사용합니다. 
+</p>
+<p>일반적으로 <code>R</code>로 자료를 가져올 때, 그리고 내보낼 때, 인코딩은 매우 예민하게 영향을 미치며, 때로는 <code>R</code> 초급자에게는 큰 부담이 되기도 합니다. 다른 운영체제에서 제작된 파일을 가져오거나, 또 다른 운영체제를 사용하는 사용자에게 파일로 데이터를 내보낼 때를 가정해 봅시다. 가져오기/내보내기 관련 함수 안의 인자에서 <code>fileEncoding</code> 또는 <code>encoding</code> 등의 사용 가능 여부를 확인하고, <code>utf-8</code> 또는 <code>CP949</code>, <code>cp949</code> 등의 규칙을 갖는 인코딩 관련 작업을 추가하는 경우가 많기 때문입니다. 
+</p>
+<p>예를 들어, 앞서 소개한 <code>scan()</code> 함수의 도움말을 살펴보십시오.  <code>fileEncoding</code>, <code>encoding</code> 등의 인자 설명이 있을 것입니다.
+</p>
+<hr size="6">
+<a name="g_t_d14d_c2a4_d2b8-_d30c_c77c_b85c-_b0b4_bcf4_b0b4_ae30"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_c778_cf54_b529" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#XML" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c18c_ac1c" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c18c_ac1c" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="tegseuteu-pailro-naebonaegi"></a>
+<h2 class="section">1.2 텍스트 파일로 내보내기</h2>
+<a name="index-tegseuteu-pailro-naebonaegi"></a>
+
+<p>R 개발 코어 팀은 R 매뉴얼 홈페이지(<a href="https://cran.r-project.org/manuals.html">https://cran.r-project.org/manuals.html</a>)에서 다음과 같이 밝히고 있습니다:
+</p>
+<blockquote><p>The following manuals for R were created on Debian Linux and may differ from the manuals for Mac or Windows on platform-specific pages, but most parts will be identical for all platforms.(번역: 다음 R 매뉴얼은 Debian Linux에서 생성되었으며, 플랫폼별 페이지에서 Mac이나 Windows용 매뉴얼과 다를 수 있지만, 대부분의 부분은 모든 플랫폼에서 동일할 것입니다.) 
+</p></blockquote>
+
+<p>한국알사용자회도 이 문서, <em>R 데이터 가져오기/내보내기 [한글부록]</em>를 Debian와 Debian 계열 리눅스 기반 위에서 제작합니다. 이것을 밝히는 것은 다른 한편으로, 이 문서의 기본 인코딩을 <code>utf-8</code>로 정하고 사용자들에게 한글 도움말을 제공하는 것을 의미합니다. 예를 들어, 윈도우 운영체제에서 제작된 데이터 파일을 불러오는 경우, 또는 윈도우 사용자에게 전달할 목적으로 파일 내보내기를 고려하는 경우 등이 주의를 요구하는 설명 영역이 된다는 뜻이기도 합니다. 
+</p>
+<p><code>write.table()</code> 함수의 도움말에서
+</p><table><tr><td>&nbsp;</td><td><pre class="example">write.csv(x, file = &quot;foo.csv&quot;, fileEncoding = &quot;UTF-16LE&quot;)
+</pre></td></tr></table>
+
+<p>을 찾을 수 있을 것입니다. 만약 한글 윈도우 사용자에게 파일을 전달할 목적으로
+</p><table><tr><td>&nbsp;</td><td><pre class="example">write.csv(x, file = &quot;foo.csv&quot;, fileEncoding = &quot;CP949&quot;)
+</pre></td></tr></table>
+
+<p>로 <code>fileEncoding</code> 인자를 수정할 수 있습니다. 주의할 점이 있습니다. <code>cp-949</code> 또는 <code>CP-949</code> 등 중간에 &rsquo;-&rsquo;에 있는 경우, 데이터 내보내기가 성공적이지 않습니다.
+</p>
+<hr size="6">
+<a name="XML"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_d14d_c2a4_d2b8-_d30c_c77c_b85c-_b0b4_bcf4_b0b4_ae30" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c18c_ac1c" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c18c_ac1c" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="XML-1"></a>
+<h2 class="section">1.3 XML</h2>
+<a name="index-XML"></a>
+
+<p>(공백)
+</p>
+<hr size="6">
+<a name="g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#XML" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#read_002etable_c758-_bcc0_d615" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c18c_ac1c" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b2e4_b978-_d1b5_acc4-_c2dc_c2a4_d15c_c5d0_c11c-_ac00_c838_c624_ae30" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="seupeuredeusiteuwa-yusahan-deiteo"></a>
+<h1 class="chapter">2. 스프레드시트와 유사한 데이터</h1>
+<a name="index-seupeuredeusiteuwa-yusahan-deiteo"></a>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#read_002etable_c758-_bcc0_d615">2.1 <code>read.table</code>의 변형</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">    
+</td></tr>
+<tr><td align="left" valign="top"><a href="#g_t_ace0_c815-_b108_be44-_d615_c2dd-_d30c_c77c">2.2 고정 너비 형식 파일</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">    
+</td></tr>
+<tr><td align="left" valign="top"><a href="#g_t_b370_c774_d130-_ad50_d658-_d615_c2dd-_0028DIF_0029">2.3 데이터 교환 형식 (DIF)</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">  
+</td></tr>
+<tr><td align="left" valign="top"><a href="#scan-_c9c1_c811-_c0ac_c6a9">2.4 <code>scan</code> 직접 사용</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">         
+</td></tr>
+<tr><td align="left" valign="top"><a href="#g_t_b370_c774_d130_c758-_d615_d0dc-_bcc0_acbd">2.5 데이터의 형태 변경</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">             
+</td></tr>
+<tr><td align="left" valign="top"><a href="#g_t_d3c9_ba74-_ad50_cc28_d45c">2.6 평면 교차표</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">     
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="read_002etable_c758-_bcc0_d615"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_ace0_c815-_b108_be44-_d615_c2dd-_d30c_c77c" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b2e4_b978-_d1b5_acc4-_c2dc_c2a4_d15c_c5d0_c11c-_ac00_c838_c624_ae30" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="read_002etableyi-byeonhyeong"></a>
+<h2 class="section">2.1 <code>read.table</code>의 변형</h2>
+<a name="index-read_002etable"></a>
+
+<p><code>read.table()</code> 함수를 사용하여, 윈도우에서 제작된 파일을 가져오는 방법을 설명합니다. 앞서 밝힌 것처럼, 이 글의 제작 환경은 Debian 계열의 리눅스로 <code>utf-8</code>을 기본 인코딩으로 합니다.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">read.table(&quot;file.dat&quot;, fileEncoding=&quot;CP949&quot;)
+</pre></td></tr></table>
+
+<p>주의할 점이 있습니다. <code>cp-949</code> 또는 <code>CP-949</code> 등 중간에 &rsquo;-&rsquo;에 있는 경우, 데이터 불러오기가 성공적이지 않습니다.
+</p>
+<hr size="6">
+<a name="g_t_ace0_c815-_b108_be44-_d615_c2dd-_d30c_c77c"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#read_002etable_c758-_bcc0_d615" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b370_c774_d130-_ad50_d658-_d615_c2dd-_0028DIF_0029" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b2e4_b978-_d1b5_acc4-_c2dc_c2a4_d15c_c5d0_c11c-_ac00_c838_c624_ae30" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="gojeong-neobi-hyeongsig-pail"></a>
+<h2 class="section">2.2 고정 너비 형식 파일</h2>
+<a name="index-gojeong-neobi-hyeongsig-pail"></a>
+
+<p>(공백)
+</p>
+<hr size="6">
+<a name="g_t_b370_c774_d130-_ad50_d658-_d615_c2dd-_0028DIF_0029"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_ace0_c815-_b108_be44-_d615_c2dd-_d30c_c77c" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#scan-_c9c1_c811-_c0ac_c6a9" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b2e4_b978-_d1b5_acc4-_c2dc_c2a4_d15c_c5d0_c11c-_ac00_c838_c624_ae30" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="deiteo-gyohwan-hyeongsig-_0028DIF_0029"></a>
+<h2 class="section">2.3 데이터 교환 형식 (DIF)</h2>
+<a name="index-deiteo-gyohwan-hyeongsig-_0028DIF_0029"></a>
+
+<p>(공백)
+</p>
+<hr size="6">
+<a name="scan-_c9c1_c811-_c0ac_c6a9"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_b370_c774_d130-_ad50_d658-_d615_c2dd-_0028DIF_0029" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b370_c774_d130_c758-_d615_d0dc-_bcc0_acbd" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b2e4_b978-_d1b5_acc4-_c2dc_c2a4_d15c_c5d0_c11c-_ac00_c838_c624_ae30" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="scan-jigjeob-sayong"></a>
+<h2 class="section">2.4 <code>scan</code> 직접 사용</h2>
+<a name="index-scan-1"></a>
+
+<table><tr><td>&nbsp;</td><td><pre class="example">&gt; ?scan
+</pre></td></tr></table>
+
+<p>을 통하여 <code>scan()</code> 함수의 도움말을 열어서 살펴볼 수 있습니다.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">scan(file = &quot;&quot;, what = double(), nmax = -1, n = -1, sep = &quot;&quot;,
+          quote = if(identical(sep, &quot;\n&quot;)) &quot;&quot; else &quot;'\&quot;&quot;, dec = &quot;.&quot;,
+          skip = 0, nlines = 0, na.strings = &quot;NA&quot;,
+          flush = FALSE, fill = FALSE, strip.white = FALSE,
+          quiet = FALSE, blank.lines.skip = TRUE, multi.line = TRUE,
+          comment.char = &quot;&quot;, allowEscapes = FALSE,
+          fileEncoding = &quot;&quot;, encoding = &quot;unknown&quot;, text, skipNul = FALSE)
+</pre></td></tr></table>
+
+<p>위와 같은 <code>scan()</code> 함수 사용법에서 <code>fileEncoding</code>과 <code>encoding</code>이 있습니다.
+</p>
+<blockquote><p>fileEncoding: character string: if non-empty declares the encoding used
+          on a file (not a connection nor the keyboard) so the
+          character data can be re-encoded.  See the ‘Encoding’
+          section of the help for ‘file’, and the ‘R Data
+          Import/Export Manual’.(번역: 문자열: 비어 있지 않으면 파일(연결이나 키보드가 아닌)에서 사용되는 인코딩을 선언하여 문자 데이터를 다시 인코딩할 수 있습니다. &rsquo;file&rsquo; 도움말의 &rsquo;Encoding&rsquo; 섹션과 &rsquo;R 데이터 가져오기/내보내기 매뉴얼&rsquo;을 참조하십시오.)
+</p></blockquote>
+
+<blockquote><p>encoding: encoding to be assumed for input strings.  If the value is
+          ‘&quot;latin1&quot;’ or ‘&quot;UTF-8&quot;’ it is used to mark character
+          strings as known to be in Latin-1 or UTF-8: it is not used to
+          re-encode the input (see ‘fileEncoding’).  See also
+          ‘Details’.(번역: 입력 문자열에 대해 가정되는 인코딩입니다. 값이 &rsquo;latin1&rsquo;이거나 &rsquo;UTF-8&rsquo;인 경우, Latin-1 또는 UTF-8로 알려진 문자열을 표시하는 데 사용됩니다. 입력을 다시 인코딩하는 데 사용되지는 않습니다(&rsquo;fileEncoding&rsquo; 참조). &rsquo;Details&rsquo; 항목도 참조하십시오. )
+</p></blockquote>
+
+<p>예를 들어, 만약에 가져올 데이터가 한글 윈도우에서 제작되었다면, <code>fileEncoding</code> 값에 <code>CP949</code>를 우선 고려할 수 있습니다.               
+</p>
+<hr size="6">
+<a name="g_t_b370_c774_d130_c758-_d615_d0dc-_bcc0_acbd"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#scan-_c9c1_c811-_c0ac_c6a9" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d3c9_ba74-_ad50_cc28_d45c" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b2e4_b978-_d1b5_acc4-_c2dc_c2a4_d15c_c5d0_c11c-_ac00_c838_c624_ae30" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="deiteoyi-hyeongtae-byeongyeong"></a>
+<h2 class="section">2.5 데이터의 형태 변경</h2>
+<a name="index-deiteoyi-hyeongtae-byeongyeong"></a>
+
+<p>(공백)
+</p>
+<hr size="6">
+<a name="g_t_d3c9_ba74-_ad50_cc28_d45c"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_b370_c774_d130_c758-_d615_d0dc-_bcc0_acbd" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b2e4_b978-_d1b5_acc4-_c2dc_c2a4_d15c_c5d0_c11c-_ac00_c838_c624_ae30" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b2e4_b978-_d1b5_acc4-_c2dc_c2a4_d15c_c5d0_c11c-_ac00_c838_c624_ae30" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="pyeongmyeon-gyocapyo"></a>
+<h2 class="section">2.6 평면 교차표</h2>
+<a name="index-pyeongmyeon-gyocapyo"></a>
+
+<p>(공백)
+</p>
+
+<hr size="6">
+<a name="g_t_b2e4_b978-_d1b5_acc4-_c2dc_c2a4_d15c_c5d0_c11c-_ac00_c838_c624_ae30"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_d3c9_ba74-_ad50_cc28_d45c" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#EpiInfo-Minitab-SAS-S_002dPLUS-SPSS-Stata-Systat" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_ad00_acc4_d615-_b370_c774_d130_bca0_c774_c2a4" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="dareun-tonggye-siseutemeseo-gajyeoogi"></a>
+<h1 class="chapter">3. 다른 통계 시스템에서 가져오기</h1>
+<a name="index-dareun-tonggye-siseutemeseo-gajyeoogi"></a>
+
+<p>(공백)
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#EpiInfo-Minitab-SAS-S_002dPLUS-SPSS-Stata-Systat">3.1 EpiInfo, Minitab, S-PLUS, SAS, SPSS, Stata, Systat</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">  
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Octave">3.2 Octave</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                      
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="EpiInfo-Minitab-SAS-S_002dPLUS-SPSS-Stata-Systat"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_b2e4_b978-_d1b5_acc4-_c2dc_c2a4_d15c_c5d0_c11c-_ac00_c838_c624_ae30" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Octave" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_b2e4_b978-_d1b5_acc4-_c2dc_c2a4_d15c_c5d0_c11c-_ac00_c838_c624_ae30" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b2e4_b978-_d1b5_acc4-_c2dc_c2a4_d15c_c5d0_c11c-_ac00_c838_c624_ae30" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_ad00_acc4_d615-_b370_c774_d130_bca0_c774_c2a4" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="EpiInfo_002c-Minitab_002c-S_002dPLUS_002c-SAS_002c-SPSS_002c-Stata_002c-Systat"></a>
+<h2 class="section">3.1 EpiInfo, Minitab, S-PLUS, SAS, SPSS, Stata, Systat</h2>
+
+<p><a href="https://CRAN.R-project.org/package=haven"><strong>haven</strong></a> 패키지에 대한 작은 설명을 하려고 합니다. <a href="https://CRAN.R-project.org/package=haven"><strong>haven</strong></a>에는 <code>read_sav()</code>함수가 있으며, <a href="https://CRAN.R-project.org/package=foreign"><strong>foreign</strong></a>의 <code>read.spss()</code>함수와 유사하게 SPSS의 .sav 파일을 가져올 수 있습니다. <code>read_sav()</code>에는  encoding 인자가 포함되어 있어서 다른 인코딩으로 제작된 데이터 파일을 다룰 수 있는 기회를 제공합니다. 
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">&gt; library(haven)
+&gt; ?read_sav
+</pre></td></tr></table>
+
+<p><code>read_sav()</code> 함수의 도움말 문서를 열고, 함수 사용법을 찾아볼 수 있습니다. 아래와 같습니다:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">read_sav(
+       file,
+       encoding = NULL,
+       user_na = FALSE,
+       col_select = NULL,
+       skip = 0,
+       n_max = Inf,
+       .name_repair = &quot;unique&quot;
+)
+</pre></td></tr></table>
+
+<p>아래는 <code>read_sav()</code>의 도움말에 있는 <code>encoding</code>에 관한 설명입니다:
+</p>
+<blockquote><p>encoding: The character encoding used for the file. The default,
+          ‘NULL’, use the encoding specified in the file, but
+          sometimes this value is incorrect and it is useful to be able
+          to override it. (번역: 파일에 사용된 문자 인코딩입니다. 기본값인 &rsquo;NULL&rsquo;은 파일에서 지정된 인코딩을 사용하지만, 때때로 이 값이 잘못되어 있어 재정의할 수 있는 것이 유용합니다.
+</p></blockquote>
+
+
+<p>주의할 점은, Posit사의 RStudio에서 제공하는 외부 데이터 불러오기에 관한 메뉴형 선택기능에 <code>read_sav()</code> 함수가 있는데, encoding 인자가 누락되어 있다는 점입니다. 한글 .sav 파일을 가져오는데 돌발적인 어려움에 부딪힐 가능성이 있습니다. 물론 명령행 입력 방식으로는 성공적으로 처리할 수 있습니다.
+</p>
+<hr size="6">
+<a name="Octave"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#EpiInfo-Minitab-SAS-S_002dPLUS-SPSS-Stata-Systat" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_ad00_acc4_d615-_b370_c774_d130_bca0_c774_c2a4" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_b2e4_b978-_d1b5_acc4-_c2dc_c2a4_d15c_c5d0_c11c-_ac00_c838_c624_ae30" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b2e4_b978-_d1b5_acc4-_c2dc_c2a4_d15c_c5d0_c11c-_ac00_c838_c624_ae30" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_ad00_acc4_d615-_b370_c774_d130_bca0_c774_c2a4" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Octave-1"></a>
+<h2 class="section">3.2 Octave</h2>
+<a name="index-Octave"></a>
+<a name="index-read_002eoctave"></a>
+
+<p>(공백)
+</p>
+<hr size="6">
+<a name="g_t_ad00_acc4_d615-_b370_c774_d130_bca0_c774_c2a4"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Octave" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c65c-_b370_c774_d130_bca0_c774_c2a4_b97c-_c0ac_c6a9_d558_b294_ac00_003f" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_b2e4_b978-_d1b5_acc4-_c2dc_c2a4_d15c_c5d0_c11c-_ac00_c838_c624_ae30" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c774_c9c4-_d30c_c77c" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="gwangyehyeong-deiteobeiseu"></a>
+<h1 class="chapter">4. 관계형 데이터베이스</h1>
+
+<a name="index-gwangyehyeong-deiteobeiseu"></a>
+<a name="index-DBMS"></a>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#g_t_c65c-_b370_c774_d130_bca0_c774_c2a4_b97c-_c0ac_c6a9_d558_b294_ac00_003f">4.1 왜 데이터베이스를 사용하는가?</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">         
+</td></tr>
+<tr><td align="left" valign="top"><a href="#RDBMS-_ac1c_c694">4.2 RDBMS 개요</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">          
+</td></tr>
+<tr><td align="left" valign="top"><a href="#R-_c778_d130_d398_c774_c2a4-_d328_d0a4_c9c0">4.3 R 인터페이스 패키지</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">        
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="g_t_c65c-_b370_c774_d130_bca0_c774_c2a4_b97c-_c0ac_c6a9_d558_b294_ac00_003f"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_ad00_acc4_d615-_b370_c774_d130_bca0_c774_c2a4" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#RDBMS-_ac1c_c694" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_ad00_acc4_d615-_b370_c774_d130_bca0_c774_c2a4" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_ad00_acc4_d615-_b370_c774_d130_bca0_c774_c2a4" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c774_c9c4-_d30c_c77c" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="wae-deiteobeiseureul-sayonghaneunga_003f"></a>
+<h2 class="section">4.1 왜 데이터베이스를 사용하는가?</h2>
+
+<p>(공백)
+</p>
+<hr size="6">
+<a name="RDBMS-_ac1c_c694"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_c65c-_b370_c774_d130_bca0_c774_c2a4_b97c-_c0ac_c6a9_d558_b294_ac00_003f" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SQL-_cffc_b9ac" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_ad00_acc4_d615-_b370_c774_d130_bca0_c774_c2a4" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_ad00_acc4_d615-_b370_c774_d130_bca0_c774_c2a4" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c774_c9c4-_d30c_c77c" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="RDBMS-gaeyo"></a>
+<h2 class="section">4.2 RDBMS 개요</h2>
+
+<p>(공백)
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#SQL-_cffc_b9ac">4.2.1 <acronym>SQL</acronym> 쿼리</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                 
+</td></tr>
+<tr><td align="left" valign="top"><a href="#g_t_b370_c774_d130-_c720_d615">4.2.2 데이터 유형</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                  
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="SQL-_cffc_b9ac"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#RDBMS-_ac1c_c694" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b370_c774_d130-_c720_d615" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_ad00_acc4_d615-_b370_c774_d130_bca0_c774_c2a4" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#RDBMS-_ac1c_c694" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c774_c9c4-_d30c_c77c" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="SQL-kweori"></a>
+<h3 class="subsection">4.2.1 <acronym>SQL</acronym> 쿼리</h3>
+<a name="index-SQL-kweori"></a>
+
+<p>(공백)
+</p>
+<hr size="6">
+<a name="g_t_b370_c774_d130-_c720_d615"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SQL-_cffc_b9ac" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#R-_c778_d130_d398_c774_c2a4-_d328_d0a4_c9c0" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_ad00_acc4_d615-_b370_c774_d130_bca0_c774_c2a4" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#RDBMS-_ac1c_c694" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c774_c9c4-_d30c_c77c" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="deiteo-yuhyeong"></a>
+<h3 class="subsection">4.2.2 데이터 유형</h3>
+
+<p>(공백)
+</p>
+<hr size="6">
+<a name="R-_c778_d130_d398_c774_c2a4-_d328_d0a4_c9c0"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_b370_c774_d130-_c720_d615" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#DBI" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_ad00_acc4_d615-_b370_c774_d130_bca0_c774_c2a4" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_ad00_acc4_d615-_b370_c774_d130_bca0_c774_c2a4" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c774_c9c4-_d30c_c77c" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="R-inteopeiseu-paekiji"></a>
+<h2 class="section">4.3 R 인터페이스 패키지</h2>
+
+<p>(공백)
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#DBI">4.3.1 DBI를 사용하는 패키지</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                         
+</td></tr>
+<tr><td align="left" valign="top"><a href="#RODBC">4.3.2 패키지 RODBC</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                       
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="DBI"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#R-_c778_d130_d398_c774_c2a4-_d328_d0a4_c9c0" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#RODBC" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_ad00_acc4_d615-_b370_c774_d130_bca0_c774_c2a4" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#R-_c778_d130_d398_c774_c2a4-_d328_d0a4_c9c0" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c774_c9c4-_d30c_c77c" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="DBIreul-sayonghaneun-paekiji"></a>
+<h3 class="subsection">4.3.1 DBI를 사용하는 패키지</h3>
+<a name="index-MySQL-deiteobeiseu-siseutem"></a>
+
+<p>(공백)
+</p>
+<hr size="6">
+<a name="RODBC"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#DBI" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c774_c9c4-_d30c_c77c" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_ad00_acc4_d615-_b370_c774_d130_bca0_c774_c2a4" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#R-_c778_d130_d398_c774_c2a4-_d328_d0a4_c9c0" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c774_c9c4-_d30c_c77c" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="paekiji-RODBC"></a>
+<h3 class="subsection">4.3.2 패키지 RODBC</h3>
+<a name="index-ODBC"></a>
+<a name="index-Open-Database-Connectivity"></a>
+
+<p>(공백)
+</p>
+<hr size="6">
+<a name="g_t_c774_c9c4-_d30c_c77c"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#RODBC" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c774_c9c4-_b370_c774_d130-_d615_c2dd" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_ad00_acc4_d615-_b370_c774_d130_bca0_c774_c2a4" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c774_bbf8_c9c0-_d30c_c77c" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="ijin-pail"></a>
+<h1 class="chapter">5. 이진 파일</h1>
+<a name="index-ijin-pail"></a>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#g_t_c774_c9c4-_b370_c774_d130-_d615_c2dd">5.1 이진 데이터 형식</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">         
+</td></tr>
+<tr><td align="left" valign="top"><a href="#dBase-_d30c_c77c-_0028DBF_0029">5.2 dBase 파일 (DBF)</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">           
+</td></tr>
+</table>
+
+<p>이진 연결(<a href="#g_t_c5f0_acb0">연결</a>)은 이제 이진 파일을 처리하는 데 선호되는 방법입니다.
+</p>
+
+
+<hr size="6">
+<a name="g_t_c774_c9c4-_b370_c774_d130-_d615_c2dd"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_c774_c9c4-_d30c_c77c" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#dBase-_d30c_c77c-_0028DBF_0029" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c774_c9c4-_d30c_c77c" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c774_c9c4-_d30c_c77c" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c774_bbf8_c9c0-_d30c_c77c" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="ijin-deiteo-hyeongsig"></a>
+<h2 class="section">5.1 이진 데이터 형식</h2>
+<a name="index-hdf5"></a>
+<a name="index-gyeceungjeog-deiteo-hyeongsig"></a>
+
+<p>(공백)
+</p>
+<hr size="6">
+<a name="dBase-_d30c_c77c-_0028DBF_0029"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_c774_c9c4-_b370_c774_d130-_d615_c2dd" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c774_bbf8_c9c0-_d30c_c77c" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c774_c9c4-_d30c_c77c" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c774_c9c4-_d30c_c77c" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c774_bbf8_c9c0-_d30c_c77c" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="dBase-pail-_0028DBF_0029"></a>
+<h2 class="section">5.2 dBase 파일 (DBF)</h2>
+
+<p>(공백)
+</p>
+<hr size="6">
+<a name="g_t_c774_bbf8_c9c0-_d30c_c77c"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#dBase-_d30c_c77c-_0028DBF_0029" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c5f0_acb0" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c774_c9c4-_d30c_c77c" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c5f0_acb0" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="imiji-pail"></a>
+<h1 class="chapter">6. 이미지 파일</h1>
+
+<p>(공백)
+</p>
+<hr size="6">
+<a name="g_t_c5f0_acb0"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_c774_bbf8_c9c0-_d30c_c77c" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c5f0_acb0-_c720_d615" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c774_bbf8_c9c0-_d30c_c77c" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b124_d2b8_c6cc_d06c-_c778_d130_d398_c774_c2a4" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="yeongyeol"></a>
+<h1 class="chapter">7. 연결</h1>
+
+<p>(공백)
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#g_t_c5f0_acb0-_c720_d615">7.1 연결 유형</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">        
+</td></tr>
+<tr><td align="left" valign="top"><a href="#g_t_c5f0_acb0_c744-_d1b5_d55c-_cd9c_b825">7.2 연결을 통한 출력</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">       
+</td></tr>
+<tr><td align="left" valign="top"><a href="#g_t_c5f0_acb0_b85c_bd80_d130_c758-_c785_b825">7.3 연결로부터의 입력</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">      
+</td></tr>
+<tr><td align="left" valign="top"><a href="#g_t_c5f0_acb0-_baa9_b85d-_bc0f-_c870_c791">7.4 연결 목록 및 조작</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">  
+</td></tr>
+<tr><td align="left" valign="top"><a href="#g_t_c774_c9c4-_c5f0_acb0">7.5 이진 연결</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">          
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="g_t_c5f0_acb0-_c720_d615"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_c5f0_acb0" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c5f0_acb0_c744-_d1b5_d55c-_cd9c_b825" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c5f0_acb0" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c5f0_acb0" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b124_d2b8_c6cc_d06c-_c778_d130_d398_c774_c2a4" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="yeongyeol-yuhyeong"></a>
+<h2 class="section">7.1 연결 유형</h2>
+<a name="index-yeongyeol"></a>
+
+<p>(공백)
+</p>
+<hr size="6">
+<a name="g_t_c5f0_acb0_c744-_d1b5_d55c-_cd9c_b825"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_c5f0_acb0-_c720_d615" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c5f0_acb0_b85c_bd80_d130_c758-_c785_b825" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c5f0_acb0" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c5f0_acb0" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b124_d2b8_c6cc_d06c-_c778_d130_d398_c774_c2a4" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="yeongyeoleul-tonghan-culryeog"></a>
+<h2 class="section">7.2 연결을 통한 출력</h2>
+<a name="index-yeongyeol-1"></a>
+
+<p>(공백)
+</p>
+<hr size="6">
+<a name="g_t_c5f0_acb0_b85c_bd80_d130_c758-_c785_b825"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_c5f0_acb0_c744-_d1b5_d55c-_cd9c_b825" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Pushback" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c5f0_acb0" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c5f0_acb0" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b124_d2b8_c6cc_d06c-_c778_d130_d398_c774_c2a4" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="yeongyeolrobuteoyi-ibryeog"></a>
+<h2 class="section">7.3 연결로부터의 입력</h2>
+
+<p>(공백)
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Pushback">7.3.1 Pushback</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                    
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Pushback"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_c5f0_acb0_b85c_bd80_d130_c758-_c785_b825" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c5f0_acb0-_baa9_b85d-_bc0f-_c870_c791" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c5f0_acb0" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c5f0_acb0_b85c_bd80_d130_c758-_c785_b825" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b124_d2b8_c6cc_d06c-_c778_d130_d398_c774_c2a4" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Pushback-1"></a>
+<h3 class="subsection">7.3.1 Pushback</h3>
+
+<p>(공백)
+</p>
+<hr size="6">
+<a name="g_t_c5f0_acb0-_baa9_b85d-_bc0f-_c870_c791"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Pushback" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c774_c9c4-_c5f0_acb0" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c5f0_acb0" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c5f0_acb0" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b124_d2b8_c6cc_d06c-_c778_d130_d398_c774_c2a4" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="yeongyeol-mogrog-mic-jojag"></a>
+<h2 class="section">7.4 연결 목록 및 조작</h2>
+<a name="index-yeongyeol-2"></a>
+
+<p>(공백)
+</p>
+<hr size="6">
+<a name="g_t_c774_c9c4-_c5f0_acb0"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_c5f0_acb0-_baa9_b85d-_bc0f-_c870_c791" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d2b9_c218-_ac12" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c5f0_acb0" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c5f0_acb0" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b124_d2b8_c6cc_d06c-_c778_d130_d398_c774_c2a4" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="ijin-yeongyeol"></a>
+<h2 class="section">7.5 이진 연결</h2>
+<a name="index-ijin-pail-1"></a>
+
+<p>(공백)
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#g_t_d2b9_c218-_ac12">7.5.1 특수 값</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">              
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="g_t_d2b9_c218-_ac12"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_c774_c9c4-_c5f0_acb0" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b124_d2b8_c6cc_d06c-_c778_d130_d398_c774_c2a4" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c5f0_acb0" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c774_c9c4-_c5f0_acb0" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b124_d2b8_c6cc_d06c-_c778_d130_d398_c774_c2a4" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="teugsu-gabs"></a>
+<h3 class="subsection">7.5.1 특수 값</h3>
+
+<p>(공백)
+</p>
+<hr size="6">
+<a name="g_t_b124_d2b8_c6cc_d06c-_c778_d130_d398_c774_c2a4"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_d2b9_c218-_ac12" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c18c_cf13_c5d0_c11c-_c77d_ae30" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c5f0_acb0" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Excel-_c2a4_d504_b808_b4dc_c2dc_d2b8-_c77d_ae30" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="neteuweokeu-inteopeiseu"></a>
+<h1 class="chapter">8. 네트워크 인터페이스</h1>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#g_t_c18c_cf13_c5d0_c11c-_c77d_ae30">8.1 소켓에서 읽기</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">        
+</td></tr>
+<tr><td align="left" valign="top"><a href="#download_002efile-_c0ac_c6a9_d558_ae30">8.2 <code>download.file</code> 사용하기</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">         
+</td></tr>
+</table>
+
+<p>(공백)
+</p>
+<hr size="6">
+<a name="g_t_c18c_cf13_c5d0_c11c-_c77d_ae30"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_b124_d2b8_c6cc_d06c-_c778_d130_d398_c774_c2a4" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#download_002efile-_c0ac_c6a9_d558_ae30" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_b124_d2b8_c6cc_d06c-_c778_d130_d398_c774_c2a4" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b124_d2b8_c6cc_d06c-_c778_d130_d398_c774_c2a4" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Excel-_c2a4_d504_b808_b4dc_c2dc_d2b8-_c77d_ae30" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="sokeseseo-ilggi"></a>
+<h2 class="section">8.1 소켓에서 읽기</h2>
+
+<p>(공백)
+</p>
+<hr size="6">
+<a name="download_002efile-_c0ac_c6a9_d558_ae30"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_c18c_cf13_c5d0_c11c-_c77d_ae30" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Excel-_c2a4_d504_b808_b4dc_c2dc_d2b8-_c77d_ae30" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_b124_d2b8_c6cc_d06c-_c778_d130_d398_c774_c2a4" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_b124_d2b8_c6cc_d06c-_c778_d130_d398_c774_c2a4" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Excel-_c2a4_d504_b808_b4dc_c2dc_d2b8-_c77d_ae30" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="download_002efile-sayonghagi"></a>
+<h2 class="section">8.2 <code>download.file</code> 사용하기</h2>
+
+<p>(공백)
+</p>
+<hr size="6">
+<a name="Excel-_c2a4_d504_b808_b4dc_c2dc_d2b8-_c77d_ae30"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#download_002efile-_c0ac_c6a9_d558_ae30" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_cc38_c870" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_b124_d2b8_c6cc_d06c-_c778_d130_d398_c774_c2a4" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_cc38_c870" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Excel-seupeuredeusiteu-ilggi"></a>
+<h1 class="chapter">9. Excel 스프레드시트 읽기</h1>
+
+<p>(공백)
+</p>
+<hr size="6">
+<a name="g_t_cc38_c870"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Excel-_c2a4_d504_b808_b4dc_c2dc_d2b8-_c77d_ae30" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Excel-_c2a4_d504_b808_b4dc_c2dc_d2b8-_c77d_ae30" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="camjo"></a>
+<h1 class="appendix">A. 참조</h1>
+
+<p>R. A. Becker, J. M. Chambers and A. R. Wilks (1988)
+<em>The New S Language.  A Programming Environment for Data Analysis
+and Graphics.</em>  Wadsworth &amp; Brooks/Cole.
+</p>
+<p>J. Bowman, S. Emberson and M. Darnovsky (1996) <em>The
+Practical <acronym>SQL</acronym> Handbook.  Using Structured Query Language.</em>
+Addison-Wesley.
+</p>
+<p>J. M. Chambers (1998) <em>Programming with Data.  A Guide to the S
+Language.</em> Springer-Verlag.
+</p>
+<p>P. Dubois (2000) <em>MySQL.</em> New Riders.
+</p>
+<p>M. Henning and S. Vinoski (1999) <em>Advanced CORBA Programming
+with C++.</em> Addison-Wesley.
+</p>
+<p>K. Kline and D. Kline (2001) <em>SQL in a Nutshell.</em> O&rsquo;Reilly.
+</p>
+<p>B. Momjian (2000) <em>PostgreSQL: Introduction and Concepts.</em>
+Addison-Wesley.
+Also available at <a href="https://momjian.us/main/writings/pgsql/aw_pgsql_book/">https://momjian.us/main/writings/pgsql/aw_pgsql_book/</a>.
+</p>
+<p>B. D. Ripley (2001) Connections. <em>R News</em>, <strong>1/1</strong>, 16&ndash;7.
+  <a href="https://www.r-project.org/doc/Rnews/Rnews_2001-1.pdf">https://www.r-project.org/doc/Rnews/Rnews_2001-1.pdf</a>
+</p>
+
+<p>T. M. Therneau and P. M. Grambsch (2000) <em>Modeling Survival
+Data.  Extending the Cox Model.</em> Springer-Verlag.
+</p>
+<p>E. J. Yarger, G. Reese and T.&nbsp;King (1999) <em>MySQL &amp; mSQL</em>.
+O&rsquo;Reilly.
+</p>
+<hr size="6">
+<a name="g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_cc38_c870" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_ac1c_b150-_c0c9_c778" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_cc38_c870" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_ac1c_b150-_c0c9_c778" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="hamsu-mic-byeonsu-saegin"></a>
+<h1 class="unnumbered">함수 및 변수 색인</h1>
+
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a href="#hamsu-mic-byeonsu-saegin_vr_letter-H" class="summary-letter"><b>H</b></a>
+ &nbsp; 
+<a href="#hamsu-mic-byeonsu-saegin_vr_letter-R" class="summary-letter"><b>R</b></a>
+ &nbsp; 
+<a href="#hamsu-mic-byeonsu-saegin_vr_letter-S" class="summary-letter"><b>S</b></a>
+ &nbsp; 
+</td></tr></table>
+<table border="0" class="index-vr">
+<tr><td></td><th align="left">Index Entry</th><th align="left"> Section</th></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="hamsu-mic-byeonsu-saegin_vr_letter-H">H</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-hdf5"><code>hdf5</code></a></td><td valign="top"><a href="#g_t_c774_c9c4-_b370_c774_d130-_d615_c2dd">5.1 이진 데이터 형식</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="hamsu-mic-byeonsu-saegin_vr_letter-R">R</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-read_002eoctave"><code>read.octave</code></a></td><td valign="top"><a href="#Octave">3.2 Octave</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-read_002etable"><code>read.table</code></a></td><td valign="top"><a href="#read_002etable_c758-_bcc0_d615">2.1 <code>read.table</code>의 변형</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="hamsu-mic-byeonsu-saegin_vr_letter-S">S</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-scan"><code>scan</code></a></td><td valign="top"><a href="#g_t_ac00_c838_c624_ae30">1.1 가져오기</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-scan-1"><code>scan</code></a></td><td valign="top"><a href="#scan-_c9c1_c811-_c0ac_c6a9">2.4 <code>scan</code> 직접 사용</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+</table>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a href="#hamsu-mic-byeonsu-saegin_vr_letter-H" class="summary-letter"><b>H</b></a>
+ &nbsp; 
+<a href="#hamsu-mic-byeonsu-saegin_vr_letter-R" class="summary-letter"><b>R</b></a>
+ &nbsp; 
+<a href="#hamsu-mic-byeonsu-saegin_vr_letter-S" class="summary-letter"><b>S</b></a>
+ &nbsp; 
+</td></tr></table>
+
+<hr size="6">
+<a name="g_t_ac1c_b150-_c0c9_c778"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[ &gt; ]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[ &gt;&gt; ]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="gaenyeom-saegin"></a>
+<h1 class="unnumbered">개념 색인</h1>
+
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a href="#gaenyeom-saegin_cp_symbol-1" class="summary-letter"><b>계</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_symbol-2" class="summary-letter"><b>고</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_symbol-3" class="summary-letter"><b>관</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_symbol-4" class="summary-letter"><b>다</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_symbol-5" class="summary-letter"><b>데</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_symbol-6" class="summary-letter"><b>스</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_symbol-7" class="summary-letter"><b>연</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_symbol-8" class="summary-letter"><b>이</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_symbol-9" class="summary-letter"><b>인</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_symbol-10" class="summary-letter"><b>텍</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_symbol-11" class="summary-letter"><b>평</b></a>
+ &nbsp; 
+<br>
+<a href="#gaenyeom-saegin_cp_letter-D" class="summary-letter"><b>D</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_letter-M" class="summary-letter"><b>M</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_letter-O" class="summary-letter"><b>O</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_letter-S" class="summary-letter"><b>S</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_letter-X" class="summary-letter"><b>X</b></a>
+ &nbsp; 
+</td></tr></table>
+<table border="0" class="index-cp">
+<tr><td></td><th align="left">Index Entry</th><th align="left"> Section</th></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="gaenyeom-saegin_cp_letter-D">D</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-DBMS">DBMS</a></td><td valign="top"><a href="#g_t_ad00_acc4_d615-_b370_c774_d130_bca0_c774_c2a4">4. 관계형 데이터베이스</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="gaenyeom-saegin_cp_letter-M">M</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-MySQL-deiteobeiseu-siseutem">MySQL 데이터베이스 시스템</a></td><td valign="top"><a href="#DBI">4.3.1 DBI를 사용하는 패키지</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="gaenyeom-saegin_cp_letter-O">O</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Octave">Octave</a></td><td valign="top"><a href="#Octave">3.2 Octave</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-ODBC">ODBC</a></td><td valign="top"><a href="#RODBC">4.3.2 패키지 RODBC</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Open-Database-Connectivity">Open Database Connectivity</a></td><td valign="top"><a href="#RODBC">4.3.2 패키지 RODBC</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="gaenyeom-saegin_cp_letter-S">S</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-SQL-kweori">SQL 쿼리</a></td><td valign="top"><a href="#SQL-_cffc_b9ac">4.2.1 <acronym>SQL</acronym> 쿼리</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="gaenyeom-saegin_cp_letter-X">X</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-XML">XML</a></td><td valign="top"><a href="#XML">1.3 XML</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="gaenyeom-saegin_cp_symbol-1">계</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gyeceungjeog-deiteo-hyeongsig">계층적 데이터 형식</a></td><td valign="top"><a href="#g_t_c774_c9c4-_b370_c774_d130-_d615_c2dd">5.1 이진 데이터 형식</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="gaenyeom-saegin_cp_symbol-2">고</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gojeong-neobi-hyeongsig-pail">고정 너비 형식 파일</a></td><td valign="top"><a href="#g_t_ace0_c815-_b108_be44-_d615_c2dd-_d30c_c77c">2.2 고정 너비 형식 파일</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="gaenyeom-saegin_cp_symbol-3">관</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gwangyehyeong-deiteobeiseu">관계형 데이터베이스</a></td><td valign="top"><a href="#g_t_ad00_acc4_d615-_b370_c774_d130_bca0_c774_c2a4">4. 관계형 데이터베이스</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="gaenyeom-saegin_cp_symbol-4">다</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-dareun-tonggye-siseutemeseo-gajyeoogi">다른 통계 시스템에서 가져오기</a></td><td valign="top"><a href="#g_t_b2e4_b978-_d1b5_acc4-_c2dc_c2a4_d15c_c5d0_c11c-_ac00_c838_c624_ae30">3. 다른 통계 시스템에서 가져오기</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="gaenyeom-saegin_cp_symbol-5">데</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-deiteo-gyohwan-hyeongsig-_0028DIF_0029">데이터 교환 형식 (DIF)</a></td><td valign="top"><a href="#g_t_b370_c774_d130-_ad50_d658-_d615_c2dd-_0028DIF_0029">2.3 데이터 교환 형식 (DIF)</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-deiteoyi-hyeongtae-byeongyeong">데이터의 형태 변경</a></td><td valign="top"><a href="#g_t_b370_c774_d130_c758-_d615_d0dc-_bcc0_acbd">2.5 데이터의 형태 변경</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="gaenyeom-saegin_cp_symbol-6">스</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-seupeuredeusiteuwa-yusahan-deiteo">스프레드시트와 유사한 데이터</a></td><td valign="top"><a href="#g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130">2. 스프레드시트와 유사한 데이터</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="gaenyeom-saegin_cp_symbol-7">연</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-yeongyeol">연결</a></td><td valign="top"><a href="#g_t_c5f0_acb0-_c720_d615">7.1 연결 유형</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-yeongyeol-1">연결</a></td><td valign="top"><a href="#g_t_c5f0_acb0_c744-_d1b5_d55c-_cd9c_b825">7.2 연결을 통한 출력</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-yeongyeol-2">연결</a></td><td valign="top"><a href="#g_t_c5f0_acb0-_baa9_b85d-_bc0f-_c870_c791">7.4 연결 목록 및 조작</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="gaenyeom-saegin_cp_symbol-8">이</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-ijin-pail">이진 파일</a></td><td valign="top"><a href="#g_t_c774_c9c4-_d30c_c77c">5. 이진 파일</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-ijin-pail-1">이진 파일</a></td><td valign="top"><a href="#g_t_c774_c9c4-_c5f0_acb0">7.5 이진 연결</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="gaenyeom-saegin_cp_symbol-9">인</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-inkoding">인코딩</a></td><td valign="top"><a href="#g_t_c778_cf54_b529">1.1.1 인코딩</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="gaenyeom-saegin_cp_symbol-10">텍</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-tegseuteu-pailro-naebonaegi">텍스트 파일로 내보내기</a></td><td valign="top"><a href="#g_t_d14d_c2a4_d2b8-_d30c_c77c_b85c-_b0b4_bcf4_b0b4_ae30">1.2 텍스트 파일로 내보내기</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="gaenyeom-saegin_cp_symbol-11">평</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-pyeongmyeon-gyocapyo">평면 교차표</a></td><td valign="top"><a href="#g_t_d3c9_ba74-_ad50_cc28_d45c">2.6 평면 교차표</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+</table>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a href="#gaenyeom-saegin_cp_symbol-1" class="summary-letter"><b>계</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_symbol-2" class="summary-letter"><b>고</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_symbol-3" class="summary-letter"><b>관</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_symbol-4" class="summary-letter"><b>다</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_symbol-5" class="summary-letter"><b>데</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_symbol-6" class="summary-letter"><b>스</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_symbol-7" class="summary-letter"><b>연</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_symbol-8" class="summary-letter"><b>이</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_symbol-9" class="summary-letter"><b>인</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_symbol-10" class="summary-letter"><b>텍</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_symbol-11" class="summary-letter"><b>평</b></a>
+ &nbsp; 
+<br>
+<a href="#gaenyeom-saegin_cp_letter-D" class="summary-letter"><b>D</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_letter-M" class="summary-letter"><b>M</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_letter-O" class="summary-letter"><b>O</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_letter-S" class="summary-letter"><b>S</b></a>
+ &nbsp; 
+<a href="#gaenyeom-saegin_cp_letter-X" class="summary-letter"><b>X</b></a>
+ &nbsp; 
+</td></tr></table>
+
+
+<hr size="6">
+<a name="SEC_Contents"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1>Table of Contents</h1>
+<div class="contents">
+
+<ul class="toc">
+  <li><a name="toc-gamsayi-mal" href="#g_t_ac10_c0ac_c758-_b9d0">감사의 말</a></li>
+  <li><a name="toc-sogae" href="#g_t_c18c_ac1c">1. 소개</a>
+  <ul class="toc">
+    <li><a name="toc-gajyeoogi" href="#g_t_ac00_c838_c624_ae30">1.1 가져오기</a>
+    <ul class="toc">
+      <li><a name="toc-inkoding" href="#g_t_c778_cf54_b529">1.1.1 인코딩</a></li>
+    </ul></li>
+    <li><a name="toc-tegseuteu-pailro-naebonaegi" href="#g_t_d14d_c2a4_d2b8-_d30c_c77c_b85c-_b0b4_bcf4_b0b4_ae30">1.2 텍스트 파일로 내보내기</a></li>
+    <li><a name="toc-XML-1" href="#XML">1.3 XML</a></li>
+  </ul></li>
+  <li><a name="toc-seupeuredeusiteuwa-yusahan-deiteo" href="#g_t_c2a4_d504_b808_b4dc_c2dc_d2b8_c640-_c720_c0ac_d55c-_b370_c774_d130">2. 스프레드시트와 유사한 데이터</a>
+  <ul class="toc">
+    <li><a name="toc-read_002etableyi-byeonhyeong" href="#read_002etable_c758-_bcc0_d615">2.1 <code>read.table</code>의 변형</a></li>
+    <li><a name="toc-gojeong-neobi-hyeongsig-pail" href="#g_t_ace0_c815-_b108_be44-_d615_c2dd-_d30c_c77c">2.2 고정 너비 형식 파일</a></li>
+    <li><a name="toc-deiteo-gyohwan-hyeongsig-_0028DIF_0029" href="#g_t_b370_c774_d130-_ad50_d658-_d615_c2dd-_0028DIF_0029">2.3 데이터 교환 형식 (DIF)</a></li>
+    <li><a name="toc-scan-jigjeob-sayong" href="#scan-_c9c1_c811-_c0ac_c6a9">2.4 <code>scan</code> 직접 사용</a></li>
+    <li><a name="toc-deiteoyi-hyeongtae-byeongyeong" href="#g_t_b370_c774_d130_c758-_d615_d0dc-_bcc0_acbd">2.5 데이터의 형태 변경</a></li>
+    <li><a name="toc-pyeongmyeon-gyocapyo" href="#g_t_d3c9_ba74-_ad50_cc28_d45c">2.6 평면 교차표</a></li>
+  </ul></li>
+  <li><a name="toc-dareun-tonggye-siseutemeseo-gajyeoogi" href="#g_t_b2e4_b978-_d1b5_acc4-_c2dc_c2a4_d15c_c5d0_c11c-_ac00_c838_c624_ae30">3. 다른 통계 시스템에서 가져오기</a>
+  <ul class="toc">
+    <li><a name="toc-EpiInfo_002c-Minitab_002c-S_002dPLUS_002c-SAS_002c-SPSS_002c-Stata_002c-Systat" href="#EpiInfo-Minitab-SAS-S_002dPLUS-SPSS-Stata-Systat">3.1 EpiInfo, Minitab, S-PLUS, SAS, SPSS, Stata, Systat</a></li>
+    <li><a name="toc-Octave-1" href="#Octave">3.2 Octave</a></li>
+  </ul></li>
+  <li><a name="toc-gwangyehyeong-deiteobeiseu" href="#g_t_ad00_acc4_d615-_b370_c774_d130_bca0_c774_c2a4">4. 관계형 데이터베이스</a>
+  <ul class="toc">
+    <li><a name="toc-wae-deiteobeiseureul-sayonghaneunga_003f" href="#g_t_c65c-_b370_c774_d130_bca0_c774_c2a4_b97c-_c0ac_c6a9_d558_b294_ac00_003f">4.1 왜 데이터베이스를 사용하는가?</a></li>
+    <li><a name="toc-RDBMS-gaeyo" href="#RDBMS-_ac1c_c694">4.2 RDBMS 개요</a>
+    <ul class="toc">
+      <li><a name="toc-SQL-kweori" href="#SQL-_cffc_b9ac">4.2.1 <acronym>SQL</acronym> 쿼리</a></li>
+      <li><a name="toc-deiteo-yuhyeong" href="#g_t_b370_c774_d130-_c720_d615">4.2.2 데이터 유형</a></li>
+    </ul></li>
+    <li><a name="toc-R-inteopeiseu-paekiji" href="#R-_c778_d130_d398_c774_c2a4-_d328_d0a4_c9c0">4.3 R 인터페이스 패키지</a>
+    <ul class="toc">
+      <li><a name="toc-DBIreul-sayonghaneun-paekiji" href="#DBI">4.3.1 DBI를 사용하는 패키지</a></li>
+      <li><a name="toc-paekiji-RODBC" href="#RODBC">4.3.2 패키지 RODBC</a></li>
+    </ul>
+</li>
+  </ul></li>
+  <li><a name="toc-ijin-pail" href="#g_t_c774_c9c4-_d30c_c77c">5. 이진 파일</a>
+  <ul class="toc">
+    <li><a name="toc-ijin-deiteo-hyeongsig" href="#g_t_c774_c9c4-_b370_c774_d130-_d615_c2dd">5.1 이진 데이터 형식</a></li>
+    <li><a name="toc-dBase-pail-_0028DBF_0029" href="#dBase-_d30c_c77c-_0028DBF_0029">5.2 dBase 파일 (DBF)</a></li>
+  </ul></li>
+  <li><a name="toc-imiji-pail" href="#g_t_c774_bbf8_c9c0-_d30c_c77c">6. 이미지 파일</a></li>
+  <li><a name="toc-yeongyeol" href="#g_t_c5f0_acb0">7. 연결</a>
+  <ul class="toc">
+    <li><a name="toc-yeongyeol-yuhyeong" href="#g_t_c5f0_acb0-_c720_d615">7.1 연결 유형</a></li>
+    <li><a name="toc-yeongyeoleul-tonghan-culryeog" href="#g_t_c5f0_acb0_c744-_d1b5_d55c-_cd9c_b825">7.2 연결을 통한 출력</a></li>
+    <li><a name="toc-yeongyeolrobuteoyi-ibryeog" href="#g_t_c5f0_acb0_b85c_bd80_d130_c758-_c785_b825">7.3 연결로부터의 입력</a>
+    <ul class="toc">
+      <li><a name="toc-Pushback-1" href="#Pushback">7.3.1 Pushback</a></li>
+    </ul></li>
+    <li><a name="toc-yeongyeol-mogrog-mic-jojag" href="#g_t_c5f0_acb0-_baa9_b85d-_bc0f-_c870_c791">7.4 연결 목록 및 조작</a></li>
+    <li><a name="toc-ijin-yeongyeol" href="#g_t_c774_c9c4-_c5f0_acb0">7.5 이진 연결</a>
+    <ul class="toc">
+      <li><a name="toc-teugsu-gabs" href="#g_t_d2b9_c218-_ac12">7.5.1 특수 값</a></li>
+    </ul>
+</li>
+  </ul></li>
+  <li><a name="toc-neteuweokeu-inteopeiseu" href="#g_t_b124_d2b8_c6cc_d06c-_c778_d130_d398_c774_c2a4">8. 네트워크 인터페이스</a>
+  <ul class="toc">
+    <li><a name="toc-sokeseseo-ilggi" href="#g_t_c18c_cf13_c5d0_c11c-_c77d_ae30">8.1 소켓에서 읽기</a></li>
+    <li><a name="toc-download_002efile-sayonghagi" href="#download_002efile-_c0ac_c6a9_d558_ae30">8.2 <code>download.file</code> 사용하기</a></li>
+  </ul></li>
+  <li><a name="toc-Excel-seupeuredeusiteu-ilggi" href="#Excel-_c2a4_d504_b808_b4dc_c2dc_d2b8-_c77d_ae30">9. Excel 스프레드시트 읽기</a></li>
+  <li><a name="toc-camjo" href="#g_t_cc38_c870">A. 참조</a></li>
+  <li><a name="toc-hamsu-mic-byeonsu-saegin" href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778">함수 및 변수 색인</a></li>
+  <li><a name="toc-gaenyeom-saegin" href="#g_t_ac1c_b150-_c0c9_c778">개념 색인</a></li>
+</ul>
+</div>
+<hr size="1">
+<a name="SEC_About"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_c0c1_c704" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_d568_c218-_bc0f-_bcc0_c218-_c0c9_c778" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1>About This Document</h1>
+<p>
+  This document was generated on <i>May 7, 2023</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+</p>
+<p>
+  The buttons in the navigation panels have the following meaning:
+</p>
+<table border="1">
+  <tr>
+    <th> Button </th>
+    <th> Name </th>
+    <th> Go to </th>
+    <th> From 1.2.3 go to</th>
+  </tr>
+  <tr>
+    <td align="center"> [ &lt; ] </td>
+    <td align="center">Back</td>
+    <td>Previous section in reading order</td>
+    <td>1.2.2</td>
+  </tr>
+  <tr>
+    <td align="center"> [ &gt; ] </td>
+    <td align="center">Forward</td>
+    <td>Next section in reading order</td>
+    <td>1.2.4</td>
+  </tr>
+  <tr>
+    <td align="center"> [ &lt;&lt; ] </td>
+    <td align="center">FastBack</td>
+    <td>Beginning of this chapter or previous chapter</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td align="center"> [ Up ] </td>
+    <td align="center">Up</td>
+    <td>Up section</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td align="center"> [ &gt;&gt; ] </td>
+    <td align="center">FastForward</td>
+    <td>Next chapter</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td align="center"> [Top] </td>
+    <td align="center">Top</td>
+    <td>Cover (top) of document</td>
+    <td> &nbsp; </td>
+  </tr>
+  <tr>
+    <td align="center"> [Contents] </td>
+    <td align="center">Contents</td>
+    <td>Table of contents</td>
+    <td> &nbsp; </td>
+  </tr>
+  <tr>
+    <td align="center"> [Index] </td>
+    <td align="center">Index</td>
+    <td>Index</td>
+    <td> &nbsp; </td>
+  </tr>
+  <tr>
+    <td align="center"> [ ? ] </td>
+    <td align="center">About</td>
+    <td>About (help)</td>
+    <td> &nbsp; </td>
+  </tr>
+</table>
+
+<p>
+  where the <strong> Example </strong> assumes that the current position is at <strong> Subsubsection One-Two-Three </strong> of a document of the following structure:
+</p>
+
+<ul>
+  <li> 1. Section One
+    <ul>
+      <li>1.1 Subsection One-One
+        <ul>
+          <li>...</li>
+        </ul>
+      </li>
+      <li>1.2 Subsection One-Two
+        <ul>
+          <li>1.2.1 Subsubsection One-Two-One</li>
+          <li>1.2.2 Subsubsection One-Two-Two</li>
+          <li>1.2.3 Subsubsection One-Two-Three &nbsp; &nbsp;
+            <strong>&lt;== Current Position </strong></li>
+          <li>1.2.4 Subsubsection One-Two-Four</li>
+        </ul>
+      </li>
+      <li>1.3 Subsection One-Three
+        <ul>
+          <li>...</li>
+        </ul>
+      </li>
+      <li>1.4 Subsection One-Four</li>
+    </ul>
+  </li>
+</ul>
+
+<hr size="1">
+<p>
+ <font size="-1">
+  This document was generated on <i>May 7, 2023</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

@@ -1,0 +1,539 @@
+\input texinfo
+@c %**start of header
+@documentencoding utf-8
+@documentlanguage ko_KR
+@setfilename R-data.info
+@settitle R 데이터 가져오기/내보내기 [한글 부록]
+@setchapternewpage on
+@c %**end of header
+
+
+@syncodeindex fn vr
+
+@dircategory 프로그래밍
+@direntry
+* R Data: (R-data).      R 데이터 가져오기/내보내기 [한글 부록].
+@end direntry
+
+@finalout
+
+@include R-defs_hangul.texi
+@include version_ko.texi
+
+@copying
+이 매뉴얼은 한글 사용자를 위하여 R, 버전 @value{VERSION}에 추가한 설명입니다.
+
+@Rcopyright{2000}
+
+@quotation
+@permission{}
+@end quotation
+@end copying
+
+@titlepage
+@title R 데이터 가져오기/내보내기 [한글 부록]
+@subtitle 버전 @value{VERSION}
+@author 신종화, 이광춘
+@page
+@vskip 0pt plus 1filll
+@insertcopying
+@end titlepage
+
+@ifplaintext
+@insertcopying
+@end ifplaintext
+
+@c @ifnothtml
+@contents
+@c @end ifnothtml
+
+@ifnottex
+@node 상위, 감사의 말, (dir), (dir)
+@top R 데이터 가져오기/내보내기 [한글 부록]
+
+이 문서는 R에서 한글 데이터를 가져오고 내보내는 방법을 안내합니다.
+
+@insertcopying
+
+@end ifnottex
+
+@menu
+* 감사의 말::            
+* 소개::                
+* 스프레드시트와 유사한 데이터::       
+* 다른 통계 시스템에서 가져오기::  
+* 관계형 데이터베이스::        
+* 이진 파일::                
+* 이미지 파일::                 
+* 연결::                 
+* 네트워크 인터페이스::          
+* Excel 스프레드시트 읽기::  
+* 참조::                  
+* 함수 및 변수 색인::  
+* 개념 색인::               
+@end menu
+
+@node 감사의 말, 소개, 상위, 상위
+@unnumbered 감사의 말
+
+한국알사용자회의 기틀을 만든 열정적인 통계인, 이철희박사님께 감사드립니다.
+
+
+@node 소개, 스프레드시트와 유사한 데이터, 감사의 말, 상위
+@chapter 소개
+
+R 재단이 발행하고, 관리하는 @emph{R Data Import/Export}(번역: R 데이터 가져오기/내보내기) 매뉴얼이 있습니다. 이 기술 문서는 한글로 번역되어 있습니다. 이 매뉴얼, @emph{R 데이터 가져오기/내보내기 [한글 부록]}은 제목에서 말하는 것처럼 한글 사용자를 위한 @emph{R 데이터 가져오기/내보내기}의 부록입니다.
+
+이 매뉴얼은 '한글 관련 추가 설명 제공'이라는 제한된 목적으로 기획되었으며, 이 목적에 부합하도록 최대한 간략하게 작성되었습니다. @emph{R 데이터 가져오기/내보내기}의 구성 방식과 목차 형식을 따르면서, 한글 사용자가 부딪힐 수 있는 추가 상황에 대응하는 설명을 부분별로 추가하는 것으로 문서 내용이 제공됩니다.
+
+따라서, 이 매뉴얼은 자체적으로는 독립적이거나 완성적인 설명서가 아님을 밝힙니다. 
+
+
+@menu
+* 가져오기::                     
+* 텍스트 파일로 내보내기::        
+* XML::                         
+@end menu
+
+@node 가져오기, 텍스트 파일로 내보내기, 소개, 소개
+@section 가져오기
+@findex scan
+
+(공백)
+
+@menu
+* 인코딩::                   
+@end menu
+
+@node 인코딩,  , 가져오기, 가져오기
+@subsection 인코딩
+@cindex 인코딩
+
+맥OS 또는 유닉스 계열의 운영체제를 사용하는 한글 사용자는 이 운영체제들이 @code{utf-8}을 기본 인코딩으로 사용한다는 이야기를 들어보았을 것입니다. 
+
+하지만, 마이크로소프트사의 윈도우 운영체제를 사용하는 대다수의 사용자들은 한글 윈도우가 어떤 인코딩을 기본으로 사용하는지 모르는 경우가 많습니다. 한글 윈도우는 @code{cp949}를 기본 인코딩으로 사용합니다. 
+
+일반적으로 @code{R}로 자료를 가져올 때, 그리고 내보낼 때, 인코딩은 매우 예민하게 영향을 미치며, 때로는 @code{R} 초급자에게는 큰 부담이 되기도 합니다. 다른 운영체제에서 제작된 파일을 가져오거나, 또 다른 운영체제를 사용하는 사용자에게 파일로 데이터를 내보낼 때를 가정해 봅시다. 가져오기/내보내기 관련 함수 안의 인자에서 @code{fileEncoding} 또는 @code{encoding} 등의 사용 가능 여부를 확인하고, @code{utf-8} 또는 @code{CP949}, @code{cp949} 등의 규칙을 갖는 인코딩 관련 작업을 추가하는 경우가 많기 때문입니다. 
+
+예를 들어, 앞서 소개한 @code{scan()} 함수의 도움말을 살펴보십시오.  @code{fileEncoding}, @code{encoding} 등의 인자 설명이 있을 것입니다.
+
+@node 텍스트 파일로 내보내기, XML, 가져오기, 소개
+@section 텍스트 파일로 내보내기
+@cindex 텍스트 파일로 내보내기
+
+R 개발 코어 팀은 R 매뉴얼 홈페이지(@uref{https://cran.r-project.org/manuals.html})에서 다음과 같이 밝히고 있습니다:
+
+@quotation
+The following manuals for R were created on Debian Linux and may differ from the manuals for Mac or Windows on platform-specific pages, but most parts will be identical for all platforms.(번역: 다음 R 매뉴얼은 Debian Linux에서 생성되었으며, 플랫폼별 페이지에서 Mac이나 Windows용 매뉴얼과 다를 수 있지만, 대부분의 부분은 모든 플랫폼에서 동일할 것입니다.) 
+@end quotation
+
+한국알사용자회도 이 문서, @emph{R 데이터 가져오기/내보내기 [한글부록]}를 Debian와 Debian 계열 리눅스 기반 위에서 제작합니다. 이것을 밝히는 것은 다른 한편으로, 이 문서의 기본 인코딩을 @code{utf-8}로 정하고 사용자들에게 한글 도움말을 제공하는 것을 의미합니다. 예를 들어, 윈도우 운영체제에서 제작된 데이터 파일을 불러오는 경우, 또는 윈도우 사용자에게 전달할 목적으로 파일 내보내기를 고려하는 경우 등이 주의를 요구하는 설명 영역이 된다는 뜻이기도 합니다. 
+
+@code{write.table()} 함수의 도움말에서
+@example
+write.csv(x, file = "foo.csv", fileEncoding = "UTF-16LE")
+@end example
+
+@noindent
+을 찾을 수 있을 것입니다. 만약 한글 윈도우 사용자에게 파일을 전달할 목적으로
+@example
+write.csv(x, file = "foo.csv", fileEncoding = "CP949")
+@end example
+
+@noindent
+로 @code{fileEncoding} 인자를 수정할 수 있습니다. 주의할 점이 있습니다. @code{cp-949} 또는 @code{CP-949} 등 중간에 '-'에 있는 경우, 데이터 내보내기가 성공적이지 않습니다.
+
+@node XML,  , 텍스트 파일로 내보내기, 소개
+@section XML
+@cindex XML
+
+(공백)
+
+@node 스프레드시트와 유사한 데이터, 다른 통계 시스템에서 가져오기, 소개, 상위
+@chapter 스프레드시트와 유사한 데이터
+@cindex 스프레드시트와 유사한 데이터
+
+@menu
+* read.table의 변형::    
+* 고정 너비 형식 파일::    
+* 데이터 교환 형식 (DIF)::  
+* scan 직접 사용::         
+* 데이터의 형태 변경::             
+* 평면 교차표::     
+@end menu
+
+@node read.table의 변형, 고정 너비 형식 파일, 스프레드시트와 유사한 데이터, 스프레드시트와 유사한 데이터
+@section @code{read.table}의 변형
+@findex read.table
+
+@code{read.table()} 함수를 사용하여, 윈도우에서 제작된 파일을 가져오는 방법을 설명합니다. 앞서 밝힌 것처럼, 이 글의 제작 환경은 Debian 계열의 리눅스로 @code{utf-8}을 기본 인코딩으로 합니다.
+
+@example
+read.table("file.dat", fileEncoding="CP949")
+@end example
+
+@noindent
+주의할 점이 있습니다. @code{cp-949} 또는 @code{CP-949} 등 중간에 '-'에 있는 경우, 데이터 불러오기가 성공적이지 않습니다.
+
+@node 고정 너비 형식 파일, 데이터 교환 형식 (DIF), read.table의 변형, 스프레드시트와 유사한 데이터
+@section 고정 너비 형식 파일
+@cindex 고정 너비 형식 파일
+
+(공백)
+
+@node 데이터 교환 형식 (DIF), scan 직접 사용, 고정 너비 형식 파일, 스프레드시트와 유사한 데이터
+@section 데이터 교환 형식 (DIF)
+@cindex 데이터 교환 형식 (DIF)
+
+(공백)
+
+@node scan 직접 사용, 데이터의 형태 변경, 데이터 교환 형식 (DIF), 스프레드시트와 유사한 데이터
+@section @code{scan} 직접 사용
+@findex scan
+
+@example
+> ?scan
+@end example
+
+@noindent
+을 통하여 @code{scan()} 함수의 도움말을 열어서 살펴볼 수 있습니다.
+
+@example
+scan(file = "", what = double(), nmax = -1, n = -1, sep = "",
+          quote = if(identical(sep, "\n")) "" else "'\"", dec = ".",
+          skip = 0, nlines = 0, na.strings = "NA",
+          flush = FALSE, fill = FALSE, strip.white = FALSE,
+          quiet = FALSE, blank.lines.skip = TRUE, multi.line = TRUE,
+          comment.char = "", allowEscapes = FALSE,
+          fileEncoding = "", encoding = "unknown", text, skipNul = FALSE)
+@end example
+
+@noindent
+위와 같은 @code{scan()} 함수 사용법에서 @code{fileEncoding}과 @code{encoding}이 있습니다.
+
+@quotation
+fileEncoding: character string: if non-empty declares the encoding used
+          on a file (not a connection nor the keyboard) so the
+          character data can be re-encoded.  See the ‘Encoding’
+          section of the help for ‘file’, and the ‘R Data
+          Import/Export Manual’.(번역: 문자열: 비어 있지 않으면 파일(연결이나 키보드가 아닌)에서 사용되는 인코딩을 선언하여 문자 데이터를 다시 인코딩할 수 있습니다. 'file' 도움말의 'Encoding' 섹션과 'R 데이터 가져오기/내보내기 매뉴얼'을 참조하십시오.)
+@end quotation
+
+@quotation
+encoding: encoding to be assumed for input strings.  If the value is
+          ‘"latin1"’ or ‘"UTF-8"’ it is used to mark character
+          strings as known to be in Latin-1 or UTF-8: it is not used to
+          re-encode the input (see ‘fileEncoding’).  See also
+          ‘Details’.(번역: 입력 문자열에 대해 가정되는 인코딩입니다. 값이 'latin1'이거나 'UTF-8'인 경우, Latin-1 또는 UTF-8로 알려진 문자열을 표시하는 데 사용됩니다. 입력을 다시 인코딩하는 데 사용되지는 않습니다('fileEncoding' 참조). 'Details' 항목도 참조하십시오. )
+@end quotation
+
+@noindent
+예를 들어, 만약에 가져올 데이터가 한글 윈도우에서 제작되었다면, @code{fileEncoding} 값에 @code{CP949}를 우선 고려할 수 있습니다.               
+
+@node 데이터의 형태 변경, 평면 교차표, scan 직접 사용, 스프레드시트와 유사한 데이터
+@section 데이터의 형태 변경
+@cindex 데이터의 형태 변경
+
+(공백)
+
+@node 평면 교차표,  , 데이터의 형태 변경, 스프레드시트와 유사한 데이터
+@section 평면 교차표
+@cindex 평면 교차표
+
+(공백)
+
+
+@node 다른 통계 시스템에서 가져오기, 관계형 데이터베이스, 스프레드시트와 유사한 데이터, 상위
+@chapter 다른 통계 시스템에서 가져오기
+@cindex 다른 통계 시스템에서 가져오기
+
+(공백)
+
+@menu
+* EpiInfo Minitab SAS S-PLUS SPSS Stata Systat::  
+* Octave::                      
+@end menu
+
+@node EpiInfo Minitab SAS S-PLUS SPSS Stata Systat, Octave, 다른 통계 시스템에서 가져오기, 다른 통계 시스템에서 가져오기
+@section EpiInfo, Minitab, S-PLUS, SAS, SPSS, Stata, Systat
+
+@CRANpkg{haven} 패키지에 대한 작은 설명을 하려고 합니다. @CRANpkg{haven}에는 @code{read_sav()}함수가 있으며, @CRANpkg{foreign}의 @code{read.spss()}함수와 유사하게 SPSS의 .sav 파일을 가져올 수 있습니다. @code{read_sav()}에는  encoding 인자가 포함되어 있어서 다른 인코딩으로 제작된 데이터 파일을 다룰 수 있는 기회를 제공합니다. 
+
+@example
+> library(haven)
+> ?read_sav
+@end example
+
+@noindent
+@code{read_sav()} 함수의 도움말 문서를 열고, 함수 사용법을 찾아볼 수 있습니다. 아래와 같습니다:
+
+@example
+read_sav(
+       file,
+       encoding = NULL,
+       user_na = FALSE,
+       col_select = NULL,
+       skip = 0,
+       n_max = Inf,
+       .name_repair = "unique"
+)
+@end example
+
+아래는 @code{read_sav()}의 도움말에 있는 @code{encoding}에 관한 설명입니다:
+
+@quotation
+encoding: The character encoding used for the file. The default,
+          ‘NULL’, use the encoding specified in the file, but
+          sometimes this value is incorrect and it is useful to be able
+          to override it. (번역: 파일에 사용된 문자 인코딩입니다. 기본값인 'NULL'은 파일에서 지정된 인코딩을 사용하지만, 때때로 이 값이 잘못되어 있어 재정의할 수 있는 것이 유용합니다.
+@end quotation
+
+
+주의할 점은, Posit사의 RStudio에서 제공하는 외부 데이터 불러오기에 관한 메뉴형 선택기능에 @code{read_sav()} 함수가 있는데, encoding 인자가 누락되어 있다는 점입니다. 한글 .sav 파일을 가져오는데 돌발적인 어려움에 부딪힐 가능성이 있습니다. 물론 명령행 입력 방식으로는 성공적으로 처리할 수 있습니다.
+
+@node Octave,  , EpiInfo Minitab SAS S-PLUS SPSS Stata Systat, 다른 통계 시스템에서 가져오기
+@section Octave
+@cindex Octave
+@findex read.octave
+
+(공백)
+
+@node 관계형 데이터베이스, 이진 파일, 다른 통계 시스템에서 가져오기, 상위
+@chapter 관계형 데이터베이스
+
+@cindex 관계형 데이터베이스
+@cindex DBMS
+
+@menu
+* 왜 데이터베이스를 사용하는가?::         
+* RDBMS 개요::          
+* R 인터페이스 패키지::        
+@end menu
+
+@node 왜 데이터베이스를 사용하는가?, RDBMS 개요, 관계형 데이터베이스, 관계형 데이터베이스
+@section 왜 데이터베이스를 사용하는가?
+
+(공백)
+
+@node RDBMS 개요, R 인터페이스 패키지, 왜 데이터베이스를 사용하는가?, 관계형 데이터베이스
+@section RDBMS 개요
+
+(공백)
+
+@menu
+* SQL 쿼리::                 
+* 데이터 유형::                  
+@end menu
+
+@node SQL 쿼리, 데이터 유형, RDBMS 개요, RDBMS 개요
+@subsection @acronym{SQL} 쿼리
+@cindex SQL 쿼리
+
+(공백)
+
+@node 데이터 유형,  , SQL 쿼리, RDBMS 개요
+@subsection 데이터 유형
+
+(공백)
+
+@node R 인터페이스 패키지,  , RDBMS 개요, 관계형 데이터베이스
+@section R 인터페이스 패키지
+
+(공백)
+
+@menu
+* DBI::                         
+* RODBC::                       
+@end menu
+
+
+@node DBI, RODBC, R 인터페이스 패키지, R 인터페이스 패키지
+@subsection DBI를 사용하는 패키지
+@cindex MySQL 데이터베이스 시스템
+
+(공백)
+
+@node RODBC,  , DBI, R 인터페이스 패키지
+@subsection 패키지 RODBC
+@cindex ODBC
+@cindex Open Database Connectivity
+
+(공백)
+
+@node 이진 파일, 이미지 파일, 관계형 데이터베이스, 상위
+@chapter 이진 파일
+@cindex 이진 파일
+
+@menu
+* 이진 데이터 형식::         
+* dBase 파일 (DBF)::           
+@end menu
+
+이진 연결(@ref{연결})은 이제 이진 파일을 처리하는 데 선호되는 방법입니다.
+
+
+
+@node 이진 데이터 형식, dBase 파일 (DBF), 이진 파일, 이진 파일
+@section 이진 데이터 형식
+@findex hdf5
+@cindex 계층적 데이터 형식
+
+(공백)
+
+@node dBase 파일 (DBF),  , 이진 데이터 형식, 이진 파일
+@section dBase 파일 (DBF)
+
+(공백)
+
+@node 이미지 파일, 연결, 이진 파일, 상위
+@chapter 이미지 파일
+
+(공백)
+
+@node 연결, 네트워크 인터페이스, 이미지 파일, 상위
+@chapter 연결
+
+(공백)
+
+@menu
+* 연결 유형::        
+* 연결을 통한 출력::       
+* 연결로부터의 입력::      
+* 연결 목록 및 조작::  
+* 이진 연결::          
+@end menu
+
+
+@node 연결 유형, 연결을 통한 출력, 연결, 연결
+@section 연결 유형
+@cindex 연결
+
+(공백)
+
+@node 연결을 통한 출력, 연결로부터의 입력, 연결 유형, 연결
+@section 연결을 통한 출력
+@cindex 연결
+
+(공백)
+
+@node 연결로부터의 입력, 연결 목록 및 조작, 연결을 통한 출력, 연결
+@section 연결로부터의 입력
+
+(공백)
+
+@menu
+* Pushback::                    
+@end menu
+
+@node Pushback,  , 연결로부터의 입력, 연결로부터의 입력
+@subsection Pushback
+
+(공백)
+
+@node 연결 목록 및 조작, 이진 연결, 연결로부터의 입력, 연결
+@section 연결 목록 및 조작
+@cindex 연결
+
+(공백)
+
+@node 이진 연결,  , 연결 목록 및 조작, 연결
+@section 이진 연결
+@cindex 이진 파일
+
+(공백)
+
+@menu
+* 특수 값::              
+@end menu
+
+@node 특수 값,  , 이진 연결, 이진 연결
+@subsection 특수 값
+
+(공백)
+
+@node 네트워크 인터페이스, Excel 스프레드시트 읽기, 연결, 상위
+@chapter 네트워크 인터페이스
+
+@menu
+* 소켓에서 읽기::        
+* download.file 사용하기::         
+@end menu
+
+(공백)
+
+@node 소켓에서 읽기, download.file 사용하기, 네트워크 인터페이스, 네트워크 인터페이스
+@section 소켓에서 읽기
+
+(공백)
+
+@node download.file 사용하기,  , 소켓에서 읽기, 네트워크 인터페이스
+@section @code{download.file} 사용하기
+
+(공백)
+
+@node Excel 스프레드시트 읽기, 참조, 네트워크 인터페이스, 상위
+@chapter Excel 스프레드시트 읽기
+
+(공백)
+
+@node 참조, 함수 및 변수 색인, Excel 스프레드시트 읽기, 상위
+@appendix 참조
+
+@noindent
+R.@: A.@: Becker, J.@: M.@: Chambers and A.@: R.@: Wilks (1988)
+@emph{The New S Language.  A Programming Environment for Data Analysis
+and Graphics.}  Wadsworth & Brooks/Cole.
+
+@noindent
+J.@: Bowman, S.@: Emberson and M.@: Darnovsky (1996) @emph{The
+Practical @acronym{SQL} Handbook.  Using Structured Query Language.}
+Addison-Wesley.
+
+@noindent
+J.@: M.@: Chambers (1998) @emph{Programming with Data.  A Guide to the S
+Language.} Springer-Verlag.
+
+@noindent
+P.@: Dubois (2000) @emph{MySQL.} New Riders.
+
+@noindent
+M.@: Henning and S.@: Vinoski (1999) @emph{Advanced CORBA Programming
+with C++.} Addison-Wesley.
+
+@noindent
+K.@: Kline and D.@: Kline (2001) @emph{SQL in a Nutshell.} O'Reilly.
+
+@noindent
+B.@: Momjian (2000) @emph{PostgreSQL: Introduction and Concepts.}
+Addison-Wesley.
+Also available at @uref{https://momjian.us/main/writings/pgsql/aw_pgsql_book/}.
+
+@noindent
+B.@: D.@: Ripley (2001) Connections. @emph{R News}, @strong{1/1}, 16--7.
+  @uref{https://www.r-project.org/doc/Rnews/Rnews_2001-1.pdf}
+
+
+@noindent
+T.@: M.@: Therneau and P.@: M.@: Grambsch (2000) @emph{Modeling Survival
+Data.  Extending the Cox Model.} Springer-Verlag.
+
+@noindent
+E.@: J.@: Yarger, G.@: Reese and T.@ King (1999) @emph{MySQL & mSQL}.
+O'Reilly.
+
+@node 함수 및 변수 색인, 개념 색인, 참조, 상위
+@unnumbered 함수 및 변수 색인
+
+@printindex vr
+
+@node 개념 색인,  , 함수 및 변수 색인, 상위
+@unnumbered 개념 색인
+
+@printindex cp
+
+
+@bye
+
+@c Local Variables: ***
+@c mode: TeXinfo ***
+@c End: ***
